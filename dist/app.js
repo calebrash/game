@@ -1,12 +1,18 @@
-var cellHeight, cellWidth, clearHandler, clickHandler, factorController, game, getFactorValue, randomize, randomizeHandler, startStopHandler, stepHandler;
+var cellHeightController, cellSizeHandler, cellWidthController, clearHandler, clickHandler, defaultCellHeight, defaultCellWidth, factorController, game, gameContainer, getBoardDimensionsWithCellSize, getFactorValue, randomize, randomizeHandler, selectallHandler, startStopHandler, stepHandler;
 
 game = null;
 
+gameContainer = null;
+
 factorController = null;
 
-cellWidth = 8;
+cellWidthController = null;
 
-cellHeight = 8;
+cellHeightController = null;
+
+defaultCellWidth = 10;
+
+defaultCellHeight = 10;
 
 clickHandler = function(id, callback) {
   var trigger;
@@ -74,12 +80,46 @@ getFactorValue = function() {
   return value / 100;
 };
 
+getBoardDimensionsWithCellSize = function(width, height) {
+  var results;
+  results = {};
+  results.width = ~~(gameContainer.offsetWidth / width) + width;
+  results.height = ~~(gameContainer.offsetHeight / height) + height;
+  return results;
+};
+
+cellSizeHandler = function() {
+  var dimensions, height, wasRunning, width;
+  width = parseInt(cellWidthController.value, 10);
+  height = parseInt(cellHeightController.value, 10);
+  wasRunning = game.loop;
+  if (isNaN(width)) {
+    width = defaultCellWidth;
+    cellWidthController.value = defaultCellWidth;
+  }
+  if (isNaN(height)) {
+    height = defaultCellHeight;
+    cellHeightController.value = defaultCellHeight;
+  }
+  gameContainer.innerHTML = "";
+  dimensions = getBoardDimensionsWithCellSize(width, height);
+  game = new Game(dimensions.width, dimensions.height, width, height);
+  game.attachTo("game");
+  randomize(getFactorValue());
+  if (wasRunning) {
+    return game.start(200);
+  }
+};
+
+selectallHandler = function() {
+  return this.select();
+};
+
 window.addEventListener("load", function() {
-  var boardHeight, boardWidth, container;
-  container = document.getElementById("game");
-  boardWidth = ~~(container.offsetWidth / cellWidth) + cellWidth;
-  boardHeight = ~~(container.offsetHeight / cellHeight) + cellHeight;
-  game = new Game(boardWidth, boardHeight, cellWidth, cellHeight);
+  var dimensions;
+  gameContainer = document.getElementById("game");
+  dimensions = getBoardDimensionsWithCellSize(defaultCellWidth, defaultCellHeight);
+  game = new Game(dimensions.width, dimensions.height, defaultCellWidth, defaultCellHeight);
   game.attachTo("game");
   factorController = document.getElementById("factor");
   factorController.addEventListener("change", randomizeHandler);
@@ -87,5 +127,11 @@ window.addEventListener("load", function() {
   clickHandler("step", stepHandler);
   clickHandler("clear", clearHandler);
   clickHandler("rand", randomizeHandler);
+  cellWidthController = document.getElementById("cellwidth");
+  cellHeightController = document.getElementById("cellheight");
+  cellWidthController.addEventListener("change", cellSizeHandler);
+  cellWidthController.addEventListener("click", selectallHandler);
+  cellHeightController.addEventListener("change", cellSizeHandler);
+  cellHeightController.addEventListener("click", selectallHandler);
   return randomize(getFactorValue());
 });

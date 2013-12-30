@@ -48,9 +48,16 @@ a:hover {
 }
 
 h1 {
-  float: left;
+  display: inline;
   margin: 2px 15px 0 0;
   font-size: 1.0em;
+  line-height: 1.2em;
+}
+
+h2 {
+  display: inline;
+  margin: 2px 5px 0 15px;
+  font-size: 0.8em;
   line-height: 1.2em;
 }
 
@@ -78,11 +85,32 @@ h1 {
   border-color: #999;
 }
 
-input {
+input[type=range] {
   display: inline-block;
   position: relative;
-  top: 3px;
+  top: 4px;
   margin-left: 10px;
+}
+
+input[type=text] {
+  width: 30px;
+  height: 24px;
+  margin: -2px 0;
+  padding: 0 5px;
+  border: 1px solid #ccc;
+  font-size: 0.8em;
+  text-align: center;
+  box-shadow: none;
+  border-radius: 3px;
+  outline: none;
+}
+
+input[type=text]:focus {
+  border-color: #666;
+}
+
+label {
+  font-size: 0.9em;
 }
 
 .cell {
