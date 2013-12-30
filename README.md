@@ -21,6 +21,9 @@ document.getElementById('board').appendChild(game.board);
 
 // OR use the built-in method
 game.attachTo('board');
+
+// start the game, updating every 200ms
+game.start(200);
 ```
 
 Then, add some styles to differentiate alive and dead cells.
@@ -29,3 +32,50 @@ Then, add some styles to differentiate alive and dead cells.
 .cell       { background: white; }
 .cell.alive { background: black; }
 ```
+
+## Methods
+
+### Game
+
+#### attachTo(id)
+
+Attach the game to a element by `#id`. 
+
+#### getStatus(x, y)
+
+Get the alive/dead (`true` or `false`) status for a cell at (x,y). Returns `false` if x or y is out of range.
+
+#### step()
+
+Advance one generation.
+
+#### updateCells()
+
+Update cells for one generation.
+
+#### updateStatus()
+
+Update status object for current generation.
+
+#### start(frequency)
+
+Start the game, updating every `frequency`ms.
+
+#### stop()
+
+Stop the game.
+
+
+### Cell
+
+To access an individual cell, use `game.cells[n][m]`.
+
+#### live()
+
+Set cell status to living.
+
+#### die()
+
+Set cell status to dead.
+
+
