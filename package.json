@@ -1,0 +1,21 @@
+{
+  "name": "dd",
+  "version": "0.0.2",
+  "description": "Simple jQuery optimization library.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": "https://github.com/calebrash/dd.js",
+  "author": "Caleb Rash",
+  "license": "MIT",
+  "dependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-uglify": "~0.2.4"
+  }
+}

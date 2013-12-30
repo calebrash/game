@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#board {
+  margin: 20px auto;
+  border: 1px solid #ccc;
+}
+.controls {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+}
+a {
+  padding: 5px 20px;
+  border-bottom: 3px solid #bbb;
+  color: #333;
+  background: #eee;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: all 150ms linear;
+}
+a:hover {
+  background: #ddd;
+  border-color: #aaa;
+}
+a.active {
+  background: #ddd;
+}
+.cell {
+  float: left;
+  border-radius: 2px;
+  font-size: 0.6em;
+  text-align: center;
+  transform: translate3d(0,0,0);
+  transition: all 150ms linear;
+}
+.cell.alive {
+  background: #ccc;
+}
