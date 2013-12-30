@@ -1,8 +1,12 @@
-var clearHandler, clickHandler, factorController, game, getFactorValue, randomize, randomizeHandler, startStopHandler, stepHandler;
+var cellHeight, cellWidth, clearHandler, clickHandler, factorController, game, getFactorValue, randomize, randomizeHandler, startStopHandler, stepHandler;
 
 game = null;
 
 factorController = null;
+
+cellWidth = 8;
+
+cellHeight = 8;
 
 clickHandler = function(id, callback) {
   var trigger;
@@ -71,15 +75,17 @@ getFactorValue = function() {
 };
 
 window.addEventListener("load", function() {
-  game = new Game(150, 80, 8, 8);
-  game.attachTo('game');
+  var boardHeight, boardWidth, container;
+  container = document.getElementById("game");
+  boardWidth = ~~(container.offsetWidth / cellWidth) + cellWidth;
+  boardHeight = ~~(container.offsetHeight / cellHeight) + cellHeight;
+  game = new Game(boardWidth, boardHeight, cellWidth, cellHeight);
+  game.attachTo("game");
   factorController = document.getElementById("factor");
+  factorController.addEventListener("change", randomizeHandler);
   clickHandler("ctrl", startStopHandler);
   clickHandler("step", stepHandler);
   clickHandler("clear", clearHandler);
   clickHandler("rand", randomizeHandler);
-  factorController.addEventListener("change", function() {
-    return randomize(getFactorValue());
-  });
   return randomize(getFactorValue());
 });

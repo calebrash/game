@@ -1,5 +1,7 @@
 game = null
 factorController = null
+cellWidth = 8
+cellHeight = 8
 
 clickHandler = (id, callback) ->
   trigger = document.getElementById id
@@ -41,16 +43,25 @@ getFactorValue = () ->
   value = parseInt factorController.value, 10
   value / 100
 
+
+
 # --------------------------------------------------
 
 window.addEventListener "load", () ->
-  game = new Game(150, 80, 8, 8);
-  game.attachTo('game');
+
+  container = document.getElementById "game"
+  boardWidth = ~~(container.offsetWidth / cellWidth) + cellWidth
+  boardHeight = ~~(container.offsetHeight / cellHeight) + cellHeight
+
+  game = new Game boardWidth, boardHeight, cellWidth, cellHeight
+  game.attachTo "game"
+
   factorController = document.getElementById "factor"
+  factorController.addEventListener "change",  randomizeHandler
+
   clickHandler "ctrl", startStopHandler
   clickHandler "step", stepHandler
   clickHandler "clear", clearHandler
   clickHandler "rand", randomizeHandler
-  factorController.addEventListener "change", () ->
-    randomize getFactorValue()
+
   randomize getFactorValue()
