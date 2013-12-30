@@ -2,6 +2,11 @@ body {
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+* {
+  box-sizing: border-box;
+}
+
 #game {
   position: absolute;
   top: 0; left: 0;
@@ -10,10 +15,12 @@ body {
   overflow: hidden;
   z-index: 50;
 }
+
 #board {
   width: 100%;
   height: 100%;
 }
+
 .controls {
   position: absolute;
   top: 0; left: 0;
@@ -23,13 +30,31 @@ body {
   background: rgba(255,255,255,0.8);
   z-index: 100;
 }
+
+.controls span {
+  float: right;
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.9em;
+}
+
+a {
+  color: #a00;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #c33;
+}
+
 h1 {
   float: left;
   margin: 2px 15px 0 0;
   font-size: 1.0em;
   line-height: 1.2em;
 }
-a {
+
+.btn {
   display: inline-block;
   padding: 3px 15px;
   border-bottom: 3px solid #aaa;
@@ -40,20 +65,26 @@ a {
   border-radius: 3px;
   transition: all 150ms linear;
 }
-a:hover {
+
+.btn:hover {
   background: #ccc;
+  color: #333;
   border-color: #aaa;
 }
-a.active {
+
+.btn.active {
   background: #bbb;
+  color: #333;
   border-color: #999;
 }
+
 input {
   display: inline-block;
   position: relative;
   top: 3px;
   margin-left: 10px;
 }
+
 .cell {
   float: left;
   border-radius: 2px;
@@ -62,6 +93,7 @@ input {
   transform: translate3d(0,0,0);
   transition: all 150ms linear;
 }
+
 .cell.alive {
   background: #ccc;
 }
