@@ -31,6 +31,11 @@ body {
   z-index: 100;
 }
 
+.controls .btns,
+.controls .hide-mobile {
+  display: inline;
+}
+
 .controls span {
   float: right;
   display: inline-block;
@@ -115,13 +120,61 @@ label {
 
 .cell {
   float: left;
-  border-radius: 2px;
   font-size: 0.6em;
   text-align: center;
+  /*
+  border-radius: 2px;
   transform: translate3d(0,0,0);
   transition: all 150ms linear;
+  */
 }
 
 .cell.alive {
   background: #ccc;
 }
+
+
+@media (max-width: 995px) {
+  .controls .btns {
+    display: block;
+    float: left;
+    clear: left;
+    width: 100%;
+    margin-top: 5px;
+  }
+  .controls h1 {
+    float: left;
+  }
+  .controls span {
+    position: absolute;
+    top: 10px; right: 10px;
+  }
+}
+
+@media (max-width: 630px) {
+  .controls .btns {
+    position: absolute;
+    display: block;
+    top: 18px;
+    right: 20px;
+    float: left;
+    clear: none;
+    width: auto;
+    margin-top: 0;
+  }
+  .controls .hide-mobile {
+    display: none;
+  }
+  .controls h1 {
+    float: left;
+  }
+  .controls span {
+    position: static;
+    float: left;
+    clear: left;
+    margin: 0 0 5px 0;
+    text-align: left;
+  }
+}
+
+

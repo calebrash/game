@@ -5,6 +5,7 @@ cellWidthController  = null # cell width input field
 cellHeightController = null # cell height input field
 defaultCellWidth  = 10
 defaultCellHeight = 10
+staticDefaultCellSize = defaultCellWidth # used as reference point for resizing
 
 # generic click handler
 clickHandler = (id, callback) ->
@@ -89,31 +90,67 @@ cellSizeHandler = () ->
 selectallHandler = () ->
   @select()
 
+# handle resizing the window
+resizeTimeout = null
+resizeHandler = () ->
+  clearTimeout resizeTimeout
+  resizeTimeout = setTimeout () ->
+    console.log 'resize'
+    initGameBoard()
+  , 1000
+
+# increase cell size for smaller screens
+adjustDefaultCellSize = () ->
+  width = gameContainer.offsetWidth
+  size = staticDefaultCellSize
+  if width < 630
+    size = 20
+  else if width < 995
+    size = 15
+  defaultCellWidth = size
+  defaultCellHeight = size
+  cellWidthController.value = size
+  cellHeightController.value = size
+
+initGameBoard = () ->
+  adjustDefaultCellSize()
+  dimensions = getBoardDimensionsWithCellSize defaultCellWidth, defaultCellHeight
+  document.getElementById("game").innerHTML = ""
+  game = new Game dimensions.width, dimensions.height, defaultCellWidth, defaultCellHeight
+  game.attachTo "game"
+  randomize getFactorValue()
+
+
 # --------------------------------------------------
+
 
 window.addEventListener "load", () ->
 
+  # elements
   gameContainer = document.getElementById "game"
-  dimensions = getBoardDimensionsWithCellSize defaultCellWidth, defaultCellHeight
-
-  game = new Game dimensions.width, dimensions.height, defaultCellWidth, defaultCellHeight
-  game.attachTo "game"
-
   factorController = document.getElementById "factor"
+  cellWidthController = document.getElementById "cellwidth"
+  cellHeightController = document.getElementById "cellheight"
+
+  # initialization
+  initGameBoard()
+
+  # factor input
   factorController.addEventListener "change",  randomizeHandler
 
+  # button actions
   clickHandler "ctrl", startStopHandler
   clickHandler "step", stepHandler
   clickHandler "clear", clearHandler
   clickHandler "rand", randomizeHandler
-  
-  cellWidthController = document.getElementById "cellwidth"
-  cellHeightController = document.getElementById "cellheight"
+
+  # size input  
   cellWidthController.addEventListener "change", cellSizeHandler
   cellWidthController.addEventListener "click", selectallHandler
   cellHeightController.addEventListener "change", cellSizeHandler
   cellHeightController.addEventListener "click", selectallHandler
 
-  randomize getFactorValue()
+  # resizing
+  window.addEventListener "resize", resizeHandler
 
 

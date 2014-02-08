@@ -2,27 +2,34 @@
 <html>
 <head>
     <title>Game of Life</title>
+    <meta name="viewport" content="width=device-width">
     <link href="dist/app.css" rel="stylesheet">
 </head>
 <body>
-    <div class="controls">
+    <header class="controls">
         <h1>Conway's Game of Life</h1>
-        <a href="#" class="btn" id="ctrl">Start</a>
-        <a href="#" class="btn" id="step">Step</a>
-        <a href="#" class="btn" id="clear">Clear</a>
-        <a href="#" class="btn" id="rand">Random</a>
-        <input type="range" id="factor" min="10" max="80" value="20">
-        
-        <h2>cell size</h2>
-        <input type="text" id="cellwidth" value="10"> &times;
-        <input type="text" id="cellheight" value="10">
+        <div class="btns">
+            <a href="#" class="btn" id="ctrl">Start</a>
+            <div class="hide-mobile">
+                <a href="#" class="btn" id="step">Step</a>
+                <a href="#" class="btn" id="clear">Clear</a>
+                <a href="#" class="btn" id="rand">Random</a>
+                <input type="range" id="factor" min="10" max="80" value="20">
+            
+                <h2>cell size</h2>
+                <input type="text" id="cellwidth" value="10"> &times;
+                <input type="text" id="cellheight" value="10">
+            </div>
+        </div>
 
         <span>
             by <a href="https://github.com/calebrash" rel="author">caleb rash</a> /
             <a href="https://github.com/calebrash/game">view source</a>
         </span>
-    </div>
-    <div id="game"></div>
+    </header>
+
+    <main id="game"></main>
+
     <script src="dist/game.js"></script>
     <script src="dist/app.js"></script>
 </body>

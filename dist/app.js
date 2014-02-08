@@ -1,4 +1,4 @@
-var cellHeightController, cellSizeHandler, cellWidthController, clearHandler, clickHandler, defaultCellHeight, defaultCellWidth, factorController, game, gameContainer, getBoardDimensionsWithCellSize, getFactorValue, randomize, randomizeHandler, selectallHandler, startStopHandler, stepHandler;
+var adjustDefaultCellSize, cellHeightController, cellSizeHandler, cellWidthController, clearHandler, clickHandler, defaultCellHeight, defaultCellWidth, factorController, game, gameContainer, getBoardDimensionsWithCellSize, getFactorValue, initGameBoard, randomize, randomizeHandler, resizeHandler, resizeTimeout, selectallHandler, startStopHandler, staticDefaultCellSize, stepHandler;
 
 game = null;
 
@@ -13,6 +13,8 @@ cellHeightController = null;
 defaultCellWidth = 10;
 
 defaultCellHeight = 10;
+
+staticDefaultCellSize = defaultCellWidth;
 
 clickHandler = function(id, callback) {
   var trigger;
@@ -115,23 +117,55 @@ selectallHandler = function() {
   return this.select();
 };
 
-window.addEventListener("load", function() {
+resizeTimeout = null;
+
+resizeHandler = function() {
+  clearTimeout(resizeTimeout);
+  return resizeTimeout = setTimeout(function() {
+    console.log('resize');
+    return initGameBoard();
+  }, 1000);
+};
+
+adjustDefaultCellSize = function() {
+  var size, width;
+  width = gameContainer.offsetWidth;
+  size = staticDefaultCellSize;
+  if (width < 630) {
+    size = 20;
+  } else if (width < 995) {
+    size = 15;
+  }
+  defaultCellWidth = size;
+  defaultCellHeight = size;
+  cellWidthController.value = size;
+  return cellHeightController.value = size;
+};
+
+initGameBoard = function() {
   var dimensions;
-  gameContainer = document.getElementById("game");
+  adjustDefaultCellSize();
   dimensions = getBoardDimensionsWithCellSize(defaultCellWidth, defaultCellHeight);
+  document.getElementById("game").innerHTML = "";
   game = new Game(dimensions.width, dimensions.height, defaultCellWidth, defaultCellHeight);
   game.attachTo("game");
+  return randomize(getFactorValue());
+};
+
+window.addEventListener("load", function() {
+  gameContainer = document.getElementById("game");
   factorController = document.getElementById("factor");
+  cellWidthController = document.getElementById("cellwidth");
+  cellHeightController = document.getElementById("cellheight");
+  initGameBoard();
   factorController.addEventListener("change", randomizeHandler);
   clickHandler("ctrl", startStopHandler);
   clickHandler("step", stepHandler);
   clickHandler("clear", clearHandler);
   clickHandler("rand", randomizeHandler);
-  cellWidthController = document.getElementById("cellwidth");
-  cellHeightController = document.getElementById("cellheight");
   cellWidthController.addEventListener("change", cellSizeHandler);
   cellWidthController.addEventListener("click", selectallHandler);
   cellHeightController.addEventListener("change", cellSizeHandler);
   cellHeightController.addEventListener("click", selectallHandler);
-  return randomize(getFactorValue());
+  return window.addEventListener("resize", resizeHandler);
 });
