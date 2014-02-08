@@ -95,7 +95,6 @@ resizeTimeout = null
 resizeHandler = () ->
   clearTimeout resizeTimeout
   resizeTimeout = setTimeout () ->
-    console.log 'resize'
     initGameBoard()
   , 1000
 
