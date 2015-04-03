@@ -2,7 +2,7 @@
 
 This is a DOM-centric controller for Conway's Game of Life. Instantiating a new `Game` object creates a game board and an array of cells.
 
-Check out the [live demo of this controller](http://calebrash.github.io/game/) ([view the source](https://github.com/calebrash/game/tree/gh-pages)).
+Check out the [live demo of this controller](http://calebrash.github.io/game/).
 
 ## Usage
 ### new Game(boardWidth, boardHeight, cellWidth, cellHeight)
@@ -79,5 +79,3 @@ Set cell status to living.
 #### die()
 
 Set cell status to dead.
-
-
