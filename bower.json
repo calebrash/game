@@ -1,0 +1,22 @@
+{
+  "name": "gol",
+  "version": "0.0.0",
+  "homepage": "https://github.com/calebrash/game",
+  "authors": [
+    "Caleb Rash <caleb@brilliant.org>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.17"
+  }
+}

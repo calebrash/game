@@ -1,21 +1,23 @@
 {
-  "name": "dd",
-  "version": "0.0.2",
-  "description": "Simple jQuery optimization library.",
+  "name": "gol",
+  "version": "0.0.0",
+  "description": "This is a DOM-centric controller for Conway's Game of Life. Instantiating a new `Game` object creates a game board and an array of cells.",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
-    "test": "grunt test"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "https://github.com/calebrash/dd.js",
-  "author": "Caleb Rash",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/calebrash/game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/calebrash/game/issues"
+  },
+  "homepage": "https://github.com/calebrash/game",
   "dependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-coffee": "~0.7.0",
-    "grunt-contrib-uglify": "~0.2.4"
+    "gulp": "~3.8.11",
+    "gulp-babel": "~5.0.0"
   }
 }

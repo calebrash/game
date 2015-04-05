@@ -1,177 +1,182 @@
 body {
-  margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 * {
-  -moz-box-sizing: border-box;
-   -ms-box-sizing: border-box;
-       box-sizing: border-box;
+    -moz-box-sizing: border-box;
+     -ms-box-sizing: border-box;
+         box-sizing: border-box;
 }
 
 #game {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 50;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 50;
 }
 
 #board {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .controls {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  padding: 10px 20px;
-  border-bottom: 1px solid #ccc;
-  background: rgba(255,255,255,0.8);
-  z-index: 100;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+    background: rgba(255,255,255,0.8);
+    z-index: 100;
 }
 
 .controls .btns,
 .controls .hide-mobile {
-  display: inline;
+    display: inline;
 }
 
 .controls span {
-  float: right;
-  display: inline-block;
-  margin-top: 4px;
-  font-size: 0.9em;
+    float: right;
+    display: inline-block;
+    margin-top: 3px;
+    font-size: 0.9em;
 }
 
 a {
-  color: #a00;
-  text-decoration: none;
+    color: #a00;
+    text-decoration: none;
 }
 
 a:hover {
-  color: #c33;
+    color: #c33;
 }
 
 h1 {
-  display: inline;
-  margin: 2px 15px 0 0;
-  font-size: 1.0em;
-  line-height: 1.2em;
+    display: inline;
+    margin: 2px 15px 0 0;
+    font-size: 1.0em;
+    line-height: 1.2em;
 }
 
 h2 {
-  display: inline;
-  margin: 2px 5px 0 15px;
-  font-size: 0.8em;
-  line-height: 1.2em;
+    display: inline;
+    margin: 2px 5px 0 15px;
+    font-size: 0.8em;
+    line-height: 1.2em;
 }
 
 .btn {
-  display: inline-block;
-  padding: 3px 15px;
-  border-bottom: 3px solid #aaa;
-  color: #333;
-  background: #ddd;
-  text-decoration: none;
-  font-size: 0.9em;
-  border-radius: 3px;
-  transition: all 150ms linear;
+    display: inline-block;
+    padding: 3px 15px;
+    margin: 0 2px;
+    border: 1px solid #ccc;
+    color: #333;
+    background: #ddd;
+    text-decoration: none;
+    font-size: 0.9em;
+    border-radius: 3px;
+    transition: all 100ms linear;
 }
 
 .btn:hover {
-  background: #ccc;
-  color: #333;
-  border-color: #aaa;
+    background: #ccc;
+    color: #333;
+    border-color: #aaa;
 }
 
 .btn.active {
-  background: #bbb;
-  color: #333;
-  border-color: #999;
+    background: #bbb;
+    color: #333;
+    border-color: #999;
 }
 
 input[type=range] {
-  display: inline-block;
-  position: relative;
-  top: 4px;
-  margin-left: 10px;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    margin-left: 10px;
 }
 
 input[type=text] {
-  width: 30px;
-  height: 24px;
-  margin: -2px 0;
-  padding: 0 5px;
-  border: 1px solid #ccc;
-  font-size: 0.8em;
-  text-align: center;
-  box-shadow: none;
-  border-radius: 3px;
-  outline: none;
+    width: 30px;
+    height: 24px;
+    margin: -2px 0;
+    padding: 0 5px;
+    border: 1px solid #ccc;
+    font-size: 0.8em;
+    text-align: center;
+    box-shadow: none;
+    border-radius: 3px;
+    outline: none;
+    vertical-align: 1px;
 }
 
 input[type=text]:focus {
-  border-color: #666;
+    border-color: #666;
 }
 
 label {
-  font-size: 0.9em;
+    font-size: 0.9em;
 }
 
 .cell {
-  float: left;
-  font-size: 0.6em;
-  text-align: center;
+    float: left;
+    font-size: 0.6em;
+    text-align: center;
+    will-change: background-color;
 }
 
 .cell.alive {
-  background: #ccc;
+    background: #ccc;
 }
 
 
-@media (max-width: 995px) {
-  .controls .btns {
-    display: block;
-    float: left;
-    clear: left;
-    width: 100%;
-    margin-top: 5px;
-  }
-  .controls h1 {
-    float: left;
-  }
-  .controls span {
-    position: absolute;
-    top: 10px; right: 10px;
-  }
+@media (max-width: 1040px) {
+    h1 {
+        margin: 0 0 5px 0;
+    }
+    .controls .btns {
+        display: block;
+        float: left;
+        clear: left;
+        width: 100%;
+        margin-top: 5px;
+    }
+    .controls h1 {
+        float: left;
+    }
+    .controls span {
+        position: absolute;
+        top: 9px;
+        left: 220px;
+    }
 }
 
-@media (max-width: 630px) {
-  .controls .btns {
-    position: absolute;
-    display: block;
-    top: 18px;
-    right: 20px;
-    float: left;
-    clear: none;
-    width: auto;
-    margin-top: 0;
-  }
-  .controls .hide-mobile {
-    display: none;
-  }
-  .controls h1 {
-    float: left;
-  }
-  .controls span {
-    position: static;
-    float: left;
-    clear: left;
-    margin: 0 0 5px 0;
-    text-align: left;
-  }
+@media (max-width: 660px) {
+    .controls .btns {
+        position: absolute;
+        display: block;
+        top: 18px;
+        right: 20px;
+        float: left;
+        clear: none;
+        width: auto;
+        margin-top: 0;
+    }
+    .controls .hide-mobile {
+        display: none;
+    }
+    .controls h1 {
+        float: left;
+    }
+    .controls span {
+        position: static;
+        float: left;
+        clear: left;
+        margin: 0 0 5px 0;
+        text-align: left;
+    }
 }
-
-
